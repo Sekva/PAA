@@ -1,0 +1,17 @@
+[package]
+name = "programacao_dinamica"
+version = "0.1.0"
+authors = ["Sekva <matheusmachado708@gmail.com>"]
+description = """
+Algoritmos implementados em rust
+"""
+
+[[bin]]
+name = "matrix_chain_top_down_mem"
+path = "src/matrix_chain_top_down_mem/main.rs"
+
+[[bin]]
+name = "matrix_chain_bottom_up"
+path = "src/matrix_chain_bottom_up/main.rs"
+
+[dependencies]
