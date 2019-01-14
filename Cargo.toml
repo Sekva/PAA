@@ -14,4 +14,9 @@ path = "src/matrix_chain_top_down_mem/main.rs"
 name = "matrix_chain_bottom_up"
 path = "src/matrix_chain_bottom_up/main.rs"
 
+[[bin]]
+name = "med"
+path = "src/med/main.rs"
+
 [dependencies]
+time = "*"
