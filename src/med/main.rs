@@ -1,8 +1,8 @@
 use std::process;
 
 fn main() {
-    let str1 = String::from("execution");
-    let str2 = String::from("intention");
+    let str1 = String::from("troca");
+    let str2 = String::from("troac");
     let n = str1.len() as i32 - 1;
     let m = str2.len() as i32 - 1;
     let saida_iterativa = med_iterativo(&str1, &str2);
@@ -76,6 +76,15 @@ fn med_recursivo(str1: &String, str2: &String, i: i32, j: i32, memoria : &mut Ve
         MODIFICADOR_LEVENSHTEIN - 1 + med_recursivo(str1, str2, i - 1, j - 1, memoria),
     );
 
+    if (i > 1 && j > 1 
+        && str1.chars().nth(i as usize -1) == str2.chars().nth(j as usize - 2)
+        && str1.chars().nth(i as usize - 2) == str2.chars().nth(j as usize -1)) { 
+            *memoria.get_mut(i as usize).unwrap().get_mut(j as usize).unwrap() = std::cmp::min(
+                *memoria.get_mut(i as usize).unwrap().get_mut(j as usize).unwrap(), //Mantem o mesmo valor
+                1 + med_recursivo(str1, str2, i - 2, j - 2, memoria) // Faz uma troca (no caso de ..ab.. e ..ba..)
+            );
+    }
+
     return *memoria.get(i as usize).unwrap().get(j as usize).unwrap();
 }
 
@@ -104,10 +113,20 @@ fn med_iterativo(str1: &String, str2: &String) -> i32 {
             }
 
             distancias[i][j] = min(
-                1 + distancias[i - 1][j],
-                1 + distancias[i][j - 1],
-                MODIFICADOR_LEVENSHTEIN + distancias[i - 1][j - 1],
+                1 + distancias[i - 1][j], // Deleta o caracter de str1 ignorando ele
+                1 + distancias[i][j - 1], // Insere um caracter em str2 
+                MODIFICADOR_LEVENSHTEIN + distancias[i - 1][j - 1], // Substitui
             );
+
+            if (i > 1 
+                && j > 1 
+                && str1.chars().nth(i-1) == str2.chars().nth(j - 2)
+                && str1.chars().nth(i - 2) == str2.chars().nth(j-1)) { 
+                 distancias[i][j] = std::cmp::min(
+                     distancias[i][j], //Mantem o mesmo valor
+                     1 + distancias[i-2][j-2] // Faz uma troca (no caso de ..ab.. e ..ba..)
+                 );
+            }
         }
     }
 
