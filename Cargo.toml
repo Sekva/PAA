@@ -30,5 +30,9 @@ path = "src/guloso_grafo_dijkstra/main.rs"
 name = "sudoku"
 path = "src/backtrack_sudoku/main.rs"
 
+[[bin]]
+name = "nrainhas"
+path = "src/n_rainhas_bb/main.rs"
+
 [dependencies]
 time = "*"
