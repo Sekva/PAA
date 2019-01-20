@@ -18,5 +18,17 @@ path = "src/matrix_chain_bottom_up/main.rs"
 name = "med"
 path = "src/med/main.rs"
 
+[[bin]]
+name = "troco"
+path = "src/guloso_moeda/main.rs"
+
+[[bin]]
+name = "grafo"
+path = "src/guloso_grafo_dijkstra/main.rs"
+
+[[bin]]
+name = "sudoku"
+path = "src/backtrack_sudoku/main.rs"
+
 [dependencies]
 time = "*"
