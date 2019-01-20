@@ -15,7 +15,7 @@ fn set_pos(matriz: &mut Matriz, linha: usize, coluna: usize, valor: i32) {
         .unwrap() = valor;
 }
 
-fn printar_matriz(matriz: &mut Matriz) {
+fn printar_matriz(matriz: &Matriz) {
     for i in matriz {
         println!("{:?}", i);
     }
